@@ -20,10 +20,6 @@ const css = `
         margin: 0.5rem;
     }
 
-    /* Respetar preferencia de usuarios que evitan movimiento */
-    @media (prefers-reduced-motion: reduce) {
-        .rainbow-bg { animation: none !important; }
-    }
 `;
 
 class RomanComp extends HTMLElement {
@@ -48,6 +44,4 @@ class RomanComp extends HTMLElement {
 }
 
 // Registrar el custom element sólo si no existe para evitar errores
-if (!customElements.get('surprise')) {
-    customElements.define('surprise', RomanComp);
-}
+customElements.define('surprise', RomanComp);
