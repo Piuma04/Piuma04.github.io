@@ -44,3 +44,5 @@ class MiComponente extends HTMLElement {
         shadow.appendChild(wrapper);
     }
 }
+
+customElements.define("surprise", MiComponente);
