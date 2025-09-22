@@ -29,6 +29,8 @@ const css = `
 class RomanComp extends HTMLElement {
     constructor() {
         super();
+        // Crear y adjuntar shadow DOM
+        const shadow = this.attachShadow({ mode: 'open' });
 
         // Estilos con keyframes dentro del shadow
         const style = document.createElement('style');
@@ -45,4 +47,7 @@ class RomanComp extends HTMLElement {
     }
 }
 
-customElements.define("surprise", RomanComp);
+// Registrar el custom element sólo si no existe para evitar errores
+if (!customElements.get('surprise')) {
+    customElements.define('surprise', RomanComp);
+}
