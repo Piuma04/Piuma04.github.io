@@ -26,7 +26,7 @@ const css = `
     }
 `;
 
-class MiComponente extends HTMLElement {
+class RomanComp extends HTMLElement {
     constructor() {
         super();
 
@@ -45,4 +45,4 @@ class MiComponente extends HTMLElement {
     }
 }
 
-customElements.define("surprise", MiComponente);
+customElements.define("surprise", RomanComp);
