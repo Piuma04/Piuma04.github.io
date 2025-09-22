@@ -1,0 +1,10 @@
+@keyframes rainbow {
+    0% { color: #ff0000; } /* Rojo */
+    14.28% { color: #ff8c00; } /* Naranja */
+    28.56% { color: #ffd700; } /* Amarillo */
+    42.84% { color: #00ff00; } /* Verde */
+    57.12% { color: #00bfff; } /* Azul cielo */
+    71.4% { color: #0000ff; } /* Azul */
+    85.68% { color: #8b00ff; } /* Violeta */
+    100% { color: #ff0000; } /* Rojo (vuelve al inicio) */
+}
