@@ -1,6 +1,6 @@
 const API_KEY = "62e9afa9b26ec1658e4f7c572663a19b"
 const url1 = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&language=en-US`;
-const url2 = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&language=en-US`;
+
 
 const options = {
   method: 'GET',
@@ -38,9 +38,9 @@ app.get(['/comentario', '/comentario/:idMovie'], async (req, res) => {
 
   try {
     
-    const response = await fetch(url2, options);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${idMovie}/reviews?api_key=${API_KEY}`, options);
     const data = await response.json();
-    res.json(data.results[4]);
+    res.json(`${data.results[0].author} opina: ${data.results[0].content}`);
   } catch (err) {
     console.error('Error fetching TMDB:', err);
     res.status(500).json({ error: 'Failed to fetch trending TV shows' });
