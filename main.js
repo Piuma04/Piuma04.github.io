@@ -1,19 +1,22 @@
 const API_KEY = "62e9afa9b26ec1658e4f7c572663a19b"
-const url = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&language=en-US`;
+const url1 = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&language=en-US`;
+const url2 = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}&language=en-US`;
+
 const options = {
   method: 'GET',
 };
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+// allow parsing JSON bodies (useful later if you want POST /comentario)
+app.use(express.json())
 
 app.get('/trendingTVShow', async (req, res) => {
   try {
-    // fetch the TMDB endpoint and await the JSON body
-    const response = await fetch(url, options);
+    
+    const response = await fetch(url1, options);
     const data = await response.json();
-    // send the parsed JSON to the client
     res.json(data.results[4]);
   } catch (err) {
     console.error('Error fetching TMDB:', err);
@@ -23,8 +26,26 @@ app.get('/trendingTVShow', async (req, res) => {
 });
 
 
-app.get('/comentario', (req, res) => {
-  res.json({ message: 'comentario endpoint (placeholder)' });
+// Accept idMovie via query string (?idMovie=123) or route param (/comentario/123)
+app.get(['/comentario', '/comentario/:idMovie'], async (req, res) => {
+  const idFromQuery = req.query.idMovie;
+  const idFromParams = req.params.idMovie;
+  const idMovie = idFromQuery || idFromParams;
+
+  if (!idMovie) {
+    return res.status(400).json({ error: 'Missing required parameter idMovie' });
+  }
+
+  try {
+    
+    const response = await fetch(url2, options);
+    const data = await response.json();
+    res.json(data.results[4]);
+  } catch (err) {
+    console.error('Error fetching TMDB:', err);
+    res.status(500).json({ error: 'Failed to fetch trending TV shows' });
+  }
+
 });
 
 app.listen(port, () => {
