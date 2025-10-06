@@ -4,7 +4,7 @@
   "description": "oa",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.ts",
+    "start": "node main.js",
     "dev": "nodemon main.js"
   },
   "author": "",
